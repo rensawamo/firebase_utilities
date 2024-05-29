@@ -1,5 +1,7 @@
 ##  firebase remote config 
 
+https://youtu.be/_CXXVFPO6f0?list=PLl-K7zZEsYLmOF_07IayrTntevxtbUxDL
+
 ### メリット
 
 - リアルタイムでのアプリ更新
