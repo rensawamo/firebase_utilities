@@ -4,7 +4,7 @@ firebase analyticsの活用事例
 
 android 実機の端末
 ```sh
-$  adb -s YOURDEVICEID shell setprop debug.firebase.analytics.app com.example.firebase_analitics
+$  adb -s YOURDEVICEID shell setprop debug.firebase.analytics.app YOURAPPBUNDLE
 ```
 
 
