@@ -126,6 +126,12 @@ https://support.google.com/analytics/answer/9267735?hl=ja&visit_id=6385255939736
 
 ####  analytics.logEvent
 
+```sh
+  Future<void> _sendAnalyticsEvent() async {
+    await widget.analytics.logEvent(
+      name: 'test_event',
+```
+
 これは、nameでイベント名で指定できる
 
 ![alt text](assets/logevent.png)
