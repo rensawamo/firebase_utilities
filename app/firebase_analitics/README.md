@@ -1,6 +1,8 @@
 firebase analyticsの活用事例
 
 - firebase でリアルタイムの分析を debugで行えるようにするコマンド
+
+android 実機の端末
 ```sh
 $  adb -s YOURDEVICEID shell setprop debug.firebase.analytics.app com.example.firebase_analitics
 ```
