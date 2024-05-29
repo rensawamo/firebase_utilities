@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'firebase_options.dart';
 import 'tabs_page.dart';
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -75,24 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  /*Future<void> _setDefaultEventParameters() async {
-    if (kIsWeb) {
-      setMessage(
-        '"setDefaultEventParameters()" is not supported on web platform',
-      );
-    } else {
-      String? id = await widget.analytics.appInstanceId;
-      await widget.analytics.setDefaultEventParameters(<String, dynamic>{
-        'app_instance_id': id,
-      });
-      setMessage('setDefaultEventParameters succeeded: $id');
-    }
-  }*/
-
   Future<void> _sendAnalyticsEvent() async {
-    // Only strings and numbers (longs & doubles for android, ints and doubles for iOS) are supported for GA custom event parameters:
-    // https://firebase.google.com/docs/reference/ios/firebaseanalytics/api/reference/Classes/FIRAnalytics#+logeventwithname:parameters:
-    // https://firebase.google.com/docs/reference/android/com/google/firebase/analytics/FirebaseAnalytics#public-void-logevent-string-name,-bundle-params
     await widget.analytics.logEvent(
       name: 'test_event',
       parameters: <String, dynamic>{
@@ -100,15 +82,13 @@ class _MyHomePageState extends State<MyHomePage> {
         'int': 42,
         'long': 12345678910,
         'double': 42.0,
-        // Only strings and numbers (ints & doubles) are supported for GA custom event parameters:
-        // https://developers.google.com/analytics/devguides/collection/analyticsjs/custom-dims-mets#overview
         'bool': true.toString(),
       },
     );
 
     setMessage('logEvent succeeded');
   }
-
+  
   Future<void> _testSetUserId() async {
     await widget.analytics.setUserId(id: 'some-user');
     setMessage('setUserId succeeded');
@@ -117,7 +97,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> _logScreenView() async {
     await widget.analytics.logScreenView(
       screenName: 'Analytics Demo',
-
     );
     setMessage('setCurrentScreen succeeded');
   }

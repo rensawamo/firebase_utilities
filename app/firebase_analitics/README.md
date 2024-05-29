@@ -118,3 +118,25 @@ https://support.google.com/analytics/answer/9267735?hl=ja&visit_id=6385255939736
 上記のように、定石が存在する。
 
 
+
+
+##  イベント名
+
+####  analytics.logEvent
+
+これは、nameでイベント名で指定できる
+
+![alt text](assets/logevent.png)
+
+
+##   頻出のmethod 
+
+###  analytics.logLogin(loginMethod: 'login');
+この log~という関数は
+firebase では以下のように表示される
+
+![alt text](assets/login.png)
+
+
+![alt text](assets/login-detail.png)
+
