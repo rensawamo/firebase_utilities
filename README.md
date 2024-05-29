@@ -1,3 +1,3 @@
 
 
-![alt text](assets/firebase.png.png)
+![alt text](assets/firebase.png)
