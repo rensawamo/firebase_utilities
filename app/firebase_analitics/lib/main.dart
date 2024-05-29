@@ -2,10 +2,11 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'package:core/common_button.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
+import 'package:logger/logger.dart';
 import 'firebase_options.dart';
 import 'tabs_page.dart';
 
@@ -66,14 +67,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String _message = '';
-
-  void setMessage(String message) {
-    setState(() {
-      _message = message;
-    });
-  }
-
   Future<void> _sendAnalyticsEvent() async {
     await widget.analytics.logEvent(
       name: 'test_event',
@@ -86,50 +79,50 @@ class _MyHomePageState extends State<MyHomePage> {
       },
     );
 
-    setMessage('logEvent succeeded');
+    Logger().i('logEvent test_event called');
   }
-  
+
   Future<void> _testSetUserId() async {
     await widget.analytics.setUserId(id: 'some-user');
-    setMessage('setUserId succeeded');
+    Logger().i('setUserId called');
   }
 
   Future<void> _logScreenView() async {
     await widget.analytics.logScreenView(
       screenName: 'Analytics Demo',
     );
-    setMessage('setCurrentScreen succeeded');
+    Logger().i('logScreenView called');
   }
 
   Future<void> _testSetAnalyticsCollectionEnabled() async {
     await widget.analytics.setAnalyticsCollectionEnabled(false);
     await widget.analytics.setAnalyticsCollectionEnabled(true);
-    setMessage('setAnalyticsCollectionEnabled succeeded');
+    Logger().i('setAnalyticsCollectionEnabled called');
   }
 
   Future<void> _testSetSessionTimeoutDuration() async {
     await widget.analytics
         .setSessionTimeoutDuration(const Duration(milliseconds: 20000));
-    setMessage('setSessionTimeoutDuration succeeded');
+    Logger().i('setSessionTimeoutDuration called');
   }
 
   Future<void> _testSetUserProperty() async {
     await widget.analytics.setUserProperty(name: 'regular', value: 'indeed');
-    setMessage('setUserProperty succeeded');
+    Logger().i('setUserProperty called');
   }
 
   Future<void> _testAppInstanceId() async {
     String? id = await widget.analytics.appInstanceId;
     if (id != null) {
-      setMessage('appInstanceId succeeded: $id');
+      Logger().i('appInstanceId called.  appInstanceId succeeded: $id');
     } else {
-      setMessage('appInstanceId failed, consent declined');
+      Logger().i('appInstanceId called.  consent declined');
     }
   }
 
   Future<void> _testResetAnalyticsData() async {
     await widget.analytics.resetAnalyticsData();
-    setMessage('resetAnalyticsData succeeded');
+    Logger().i('restAnalyticsData called');
   }
 
   AnalyticsEventItem itemCreator() {
@@ -161,6 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> _testAllEventTypes() async {
+    Logger().i('Testing all standard event types');
     await widget.analytics.logAddPaymentInfo();
     await widget.analytics.logAddToCart(
       currency: 'USD',
@@ -283,7 +277,6 @@ class _MyHomePageState extends State<MyHomePage> {
     await widget.analytics.logViewSearchResults(
       searchTerm: 'test search term',
     );
-    setMessage('All standard events logged successfully');
   }
 
   @override
@@ -294,49 +287,41 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: <Widget>[
-          MaterialButton(
+          CommonButton(
             onPressed: _sendAnalyticsEvent,
-            child: const Text('Test logEvent'),
+            text: 'Test logEvent',
           ),
-          MaterialButton(
+          CommonButton(
             onPressed: _testAllEventTypes,
-            child: const Text('Test standard event types'),
+            text: 'Test standard event types',
           ),
-          MaterialButton(
+          CommonButton(
             onPressed: _testSetUserId,
-            child: const Text('Test setUserId'),
+            text: 'Test setUserId',
           ),
-          MaterialButton(
+          CommonButton(
             onPressed: _logScreenView,
-            child: const Text('Test setCurrentScreen'),
+            text: 'Test setCurrentScreen',
           ),
-          MaterialButton(
+          CommonButton(
             onPressed: _testSetAnalyticsCollectionEnabled,
-            child: const Text('Test setAnalyticsCollectionEnabled'),
+            text: 'Test setAnalyticsCollectionEnabled',
           ),
-          MaterialButton(
+          CommonButton(
             onPressed: _testSetSessionTimeoutDuration,
-            child: const Text('Test setSessionTimeoutDuration'),
+            text: 'Test setSessionTimeoutDuration',
           ),
-          MaterialButton(
+          CommonButton(
             onPressed: _testSetUserProperty,
-            child: const Text('Test setUserProperty'),
+            text: 'Test setUserProperty',
           ),
-          MaterialButton(
+          CommonButton(
             onPressed: _testAppInstanceId,
-            child: const Text('Test appInstanceId'),
+            text: 'Test appInstanceId',
           ),
-          MaterialButton(
+          CommonButton(
             onPressed: _testResetAnalyticsData,
-            child: const Text('Test resetAnalyticsData'),
-          ),
-          /*MaterialButton(
-            onPressed: _setDefaultEventParameters,
-            child: const Text('Test setDefaultEventParameters'),
-          ),*/
-          Text(
-            _message,
-            style: const TextStyle(color: Color.fromARGB(255, 0, 155, 0)),
+            text: 'Test resetAnalyticsData',
           ),
         ],
       ),
@@ -351,7 +336,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           );
         },
-        child: const Icon(Icons.tab),
+        child: const Icon(Icons.arrow_forward),
       ),
     );
   }
