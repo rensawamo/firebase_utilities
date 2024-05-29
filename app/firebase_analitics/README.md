@@ -88,3 +88,33 @@ ex) イベントごとに 取得できる値
 - notification_open :   Firebase Cloud Messagingから送信された通知をユーザーが開いたときに発生するイベント
 
 - screen_view     :   スクリーンが移動したときに発生するイベント（条件あり）
+
+https://support.google.com/analytics/answer/9234069?hl=ja
+
+
+### すべてのアプリで推奨されるイベント
+
+- login     :  	ユーザーがログインしたとき
+- purchase	:   ユーザーが購入手続きを完了したとき
+- refund	  :   ユーザーが払い戻しを受け取ったとき
+- search	  :   ユーザーがウェブサイトまたはアプリを検索したとき
+
+
+
+
+### 小売とeコマースのイベント
+
+- begin_checkout	 :  ユーザーが購入手続きを開始したとき
+- purchase	       :  ユーザーが購入手続きを完了したとき
+- refund	         :  ユーザーが払い戻しを受け取ったとき
+- remove_from_cart :  ユーザーがショッピング カートから商品を削除したとき
+- select_item	     :  ユーザーが商品やサービスのリストから商品を選択したとき
+
+など。
+全種類は以下
+https://support.google.com/analytics/answer/9267735?hl=ja&visit_id=638525593973687217-4167530302&rd=2
+
+
+上記のように、定石が存在する。
+
+
