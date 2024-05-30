@@ -76,7 +76,7 @@ import FirebaseMessaging
 
 }
 ```
-
+### xcode の設定
 
 ![alt text](assets/image.png)
 
@@ -86,8 +86,7 @@ import FirebaseMessaging
 ![alt text](assets/image-2.png)
 
 
-[AppleDeveloper](https://developer.apple.com/jp/)
-を開き、Certificates, Identifiers & Profiles にアクセスして以下の手順で証明書を作成する。
+### [AppleDeveloper](https://developer.apple.com/jp/)を開き、Certificates, Identifiers & Profiles にアクセスして以下の手順で証明書を作成する。
 
 ![alt text](assets/image-3.png)
 
@@ -131,7 +130,16 @@ import FirebaseMessaging
 ![alt text](assets/image-17.png)
 
 
+### xcodeで発行した証明書を選択する
+
 ![alt text](assets/image-18.png)
 
 
 ![alt text](assets/image-19.png)
+
+
+### プッシュ通知のテスト
+
+![alt text](assets/push2.png)
+
+![alt text](assets/push1.png)
