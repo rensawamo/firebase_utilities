@@ -12,7 +12,6 @@ import FirebaseMessaging
   ) -> Bool {
     FirebaseApp.configure()
     
-    // Set the messaging delegate
     Messaging.messaging().delegate = self
     
     GeneratedPluginRegistrant.register(with: self)
@@ -32,5 +31,6 @@ import FirebaseMessaging
     
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
+  
 
 }
