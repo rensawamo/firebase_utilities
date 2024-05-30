@@ -32,12 +32,24 @@ class FCMService {
         sound: true,
       );
     }
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
 
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
+
+    final DarwinInitializationSettings initializationSettingsIOS =
+        DarwinInitializationSettings(
+      requestAlertPermission: true,
+      requestBadgePermission: true,
+      requestSoundPermission: true,
+      onDidReceiveLocalNotification: (id, title, body, payload) async {},
+    );
+
     final InitializationSettings initializationSettings =
         InitializationSettings(
       android: initializationSettingsAndroid,
+      iOS: initializationSettingsIOS,
     );
 
     await flutterLocalNotificationsPlugin.initialize(initializationSettings);
@@ -55,7 +67,6 @@ class FCMService {
         showNotification(
             message.notification?.title, message.notification?.body);
       }
-   
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {

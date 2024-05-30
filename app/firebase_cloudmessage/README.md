@@ -32,3 +32,101 @@ https://youtu.be/sioEY4tWmLI?list=PLl-K7zZEsYLmOF_07IayrTntevxtbUxDL
 
 
 ![alt text](assets/subscribe.png)
+
+
+
+### ios のセッティング
+
+Appdelegate.swift に以下のコードを追加する
+
+```swift
+import UIKit
+import Flutter
+import Firebase
+import FirebaseMessaging
+
+@UIApplicationMain
+@objc class AppDelegate: FlutterAppDelegate, MessagingDelegate {
+  
+  override func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+  ) -> Bool {
+    FirebaseApp.configure()
+    
+    Messaging.messaging().delegate = self
+    
+    GeneratedPluginRegistrant.register(with: self)
+    if #available(iOS 10.0, *) {
+      UNUserNotificationCenter.current().delegate = self
+      let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+      UNUserNotificationCenter.current().requestAuthorization(
+        options: authOptions,
+        completionHandler: {_, _ in })
+    } else {
+      let settings: UIUserNotificationSettings =
+      UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+      application.registerUserNotificationSettings(settings)
+    }
+    
+    application.registerForRemoteNotifications()
+    
+    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+  }
+
+}
+```
+
+
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+
+![alt text](image-2.png)
+
+
+[AppleDeveloper](https://developer.apple.com/jp/)
+を開き、Certificates, Identifiers & Profiles にアクセスして以下の手順で証明書を作成する。
+
+![alt text](image-3.png)
+
+
+![alt text](image-4.png)
+
+
+![alt text](image-6.png)
+
+
+![alt text](image-7.png)
+
+![alt text](image-8.png)
+
+![alt text](image-9.png)
+
+
+![alt text](image-10.png)
+
+
+![alt text](image-11.png)
+
+
+![alt text](image-12.png)
+
+
+![alt text](image-13.png)
+
+
+![alt text](image-14.png)
+
+
+![alt text](image-15.png)
+
+
+![alt text](image-16.png)
+
+
+![alt text](image-17.png)
+
+
+![alt text](image-18.png)

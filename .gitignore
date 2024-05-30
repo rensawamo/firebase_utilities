@@ -278,6 +278,7 @@ iOSInjectionProject/
 **/.fvm/flutter_sdk
 **/lib/firebase_options.dart
 
+
 app/android/*.json
 app/firebase.json
 
