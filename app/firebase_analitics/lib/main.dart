@@ -67,35 +67,39 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  ///  Send a test event to Firebase Analytics
   Future<void> _sendAnalyticsEvent() async {
     await widget.analytics.logEvent(
       name: 'test_event',
       parameters: <String, dynamic>{
         'string': 'string',
-        'int': 42,
+        'int': 0,
         'long': 12345678910,
-        'double': 42.0,
+        'double': 123.456,
         'bool': true.toString(),
       },
     );
-
     Logger().i('logEvent test_event called');
   }
 
+  ///  set user id
   Future<void> _testSetUserId() async {
-    await widget.analytics.setUserId(id: 'some-user');
+    await widget.analytics.setUserId(id: 'user');
     Logger().i('setUserId called');
   }
 
+  ///  This event signifies a screen view. Use this when a screen transition occurs.
   Future<void> _logScreenView() async {
     await widget.analytics.logScreenView(
-      screenName: 'Analytics Demo',
+      screenName: 'home',
     );
     Logger().i('logScreenView called');
   }
 
+  /// Sets whether analytics collection is enabled for this app on this device.
   Future<void> _testSetAnalyticsCollectionEnabled() async {
     await widget.analytics.setAnalyticsCollectionEnabled(false);
+
     await widget.analytics.setAnalyticsCollectionEnabled(true);
     Logger().i('setAnalyticsCollectionEnabled called');
   }
@@ -125,14 +129,14 @@ class _MyHomePageState extends State<MyHomePage> {
     Logger().i('restAnalyticsData called');
   }
 
-  AnalyticsEventItem itemCreator() {
+  AnalyticsEventItem item() {
     return AnalyticsEventItem(
-      affiliation: 'affil',
-      coupon: 'coup',
+      affiliation: 'affiliation',
+      coupon: 'coupon',
       creativeName: 'creativeName',
       creativeSlot: 'creativeSlot',
-      discount: 2.22,
-      index: 3,
+      discount: 9.99,
+      index: 1,
       itemBrand: 'itemBrand',
       itemCategory: 'itemCategory',
       itemCategory2: 'itemCategory2',
@@ -146,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
       itemVariant: 'itemVariant',
       locationId: 'locationId',
       price: 9.99,
-      currency: 'USD',
+      currency: 'JPY',
       promotionId: 'promotionId',
       promotionName: 'promotionName',
       quantity: 1,
@@ -157,16 +161,16 @@ class _MyHomePageState extends State<MyHomePage> {
     Logger().i('Testing all standard event types');
     await widget.analytics.logAddPaymentInfo();
     await widget.analytics.logAddToCart(
-      currency: 'USD',
+      currency: 'JPY',
       value: 123,
-      items: [itemCreator(), itemCreator()],
+      items: [item(), item()],
     );
     await widget.analytics.logAddToWishlist();
     await widget.analytics.logAppOpen();
     await widget.analytics.logBeginCheckout(
       value: 123,
       currency: 'USD',
-      items: [itemCreator(), itemCreator()],
+      items: [item(), item()],
     );
     await widget.analytics.logCampaignDetails(
       source: 'source',
@@ -219,11 +223,11 @@ class _MyHomePageState extends State<MyHomePage> {
     await widget.analytics.logSelectPromotion(
       creativeName: 'promotion name',
       creativeSlot: 'promotion slot',
-      items: [itemCreator()],
+      items: [item()],
       locationId: 'United States',
     );
     await widget.analytics.logSelectItem(
-      items: [itemCreator(), itemCreator()],
+      items: [item(), item()],
       itemListName: 't-shirt',
       itemListId: '1234',
     );
@@ -233,7 +237,7 @@ class _MyHomePageState extends State<MyHomePage> {
     await widget.analytics.logViewCart(
       currency: 'USD',
       value: 123,
-      items: [itemCreator(), itemCreator()],
+      items: [item(), item()],
     );
     await widget.analytics.logShare(
       contentType: 'test content type',
@@ -251,7 +255,7 @@ class _MyHomePageState extends State<MyHomePage> {
     await widget.analytics.logViewPromotion(
       creativeName: 'promotion name',
       creativeSlot: 'promotion slot',
-      items: [itemCreator()],
+      items: [item()],
       locationId: 'United States',
       promotionId: '1234',
       promotionName: 'big sale',
@@ -259,7 +263,7 @@ class _MyHomePageState extends State<MyHomePage> {
     await widget.analytics.logRefund(
       currency: 'USD',
       value: 123,
-      items: [itemCreator(), itemCreator()],
+      items: [item(), item()],
     );
     await widget.analytics.logTutorialBegin();
     await widget.analytics.logTutorialComplete();
@@ -267,12 +271,12 @@ class _MyHomePageState extends State<MyHomePage> {
     await widget.analytics.logViewItem(
       currency: 'usd',
       value: 1000,
-      items: [itemCreator()],
+      items: [item()],
     );
     await widget.analytics.logViewItemList(
       itemListId: 't-shirt-4321',
       itemListName: 'green t-shirt',
-      items: [itemCreator()],
+      items: [item()],
     );
     await widget.analytics.logViewSearchResults(
       searchTerm: 'test search term',

@@ -1,12 +1,35 @@
-firebase analyticsの活用事例
+## build setting 
+
+### Bundle Id 
+
+android
+```sh
+com.example.firebase_analitics
+```
+
+ios 
+```sh
+com.example.firebaseAnalitics
+```
+
+### firebase のセットアップ 
+```
+#　firebase client で新規アプリ作成後
+$ firebase login
+$ dart pub global activate flutterfire_cli
+$ flutterfire configure
+```
+
+### firebase analyticsの活用事例
 
 - firebase でリアルタイムの分析を debugで行えるようにするコマンド
 
 android 実機の端末
 ```sh
-$  adb -s YOURDEVICEID shell setprop debug.firebase.analytics.app YOURAPPBUNDLE
-```
+$ flutter devices
 
+$ adb -s YOURDEVICEID shell setprop debug.firebase.analytics.app YOURAPPBUNDLE
+```
 
 
 -  流れ
@@ -147,4 +170,3 @@ firebase では以下のように表示される
 
 
 ![alt text](assets/login-detail.png)
-
